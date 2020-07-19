@@ -5,7 +5,7 @@
 
 `::marker`是一个标记伪元素，能够定义内容填充在`list-item`上代表列表项的标志，先附上一个例子，就能很清楚地看出它的作用。
 
-```
+```javascript
 <style>
 li::marker { content: "(" counter(list-item, lower-roman) ")"; }
 li { display: list-item; }
@@ -30,7 +30,7 @@ li { display: list-item; }
 
 标记的样式可以使用`list-style-type`和 `list-style-image`属性或者直接使用`::marker`伪元素进行样式编写。下面展示一个例子。
 + 用`::marker`伪元素对标记进行控制，伪元素内`content`的内容就是标记符的内容
-```
+```javascript
 <style>
   p { margin-left: 12 em; }
   p.note {
@@ -72,7 +72,7 @@ Note 1: This is a very short
 
 下面是使用例子，将会为`<li>`标签的标记块填充上指定链接的`ellipse.png`图像
 
-```
+```css
 li { list-style-image: url("http://www.example.com/ellipse.png") }
 ```
 ## 使用`list-style-type`文本类型填充标记内容
@@ -80,7 +80,7 @@ li { list-style-image: url("http://www.example.com/ellipse.png") }
 > `list-style-type` 正常取值 `<counter-style> | <string> | none`，未定义情况下是 `disc(圆形标记符)`，作用在列表项`list-items`下。<a href="https://www.w3.org/TR/2020/WD-css-lists-3-20200709/#propdef-list-style-type" target="_blank">参考链接移步</a>
 > 
 > `<counter-style>`是CSS 定义的计数器样式，允许开发者自定义`counter`的样式。比如：
-> ```
+> ```css
 > @counter-style thumbs {
 >  system: cyclic;
 >  symbols: "\1F44D";
@@ -94,7 +94,7 @@ li { list-style-image: url("http://www.example.com/ellipse.png") }
 > 具体`<counter-style>`定义规则<a href="https://www.w3.org/TR/css-counter-styles-3/#typedef-counter-style" target="_blank">参考</a>
 
 下面是关于`list-style-type`的使用例子(*如果作用元素不是列表元素，则元素的display必须设置为list-item*)
-```
+```css
 ul { list-style-type: "★"; } // 使用"★"作为标记符
 
 p.note { // 如果作用元素不是列表元素，则元素的display必须设置为list-item
