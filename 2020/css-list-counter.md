@@ -77,4 +77,18 @@ counter(zhaodao, lower-roman); /* 以小写罗马数字格式表示当前计数�
 
 你可以通过`li { counter-increment: list-item 2; }`去改变列表项递增值为2，也可以通过`li { counter-increment: list-item 0; }`去关闭列表项的递增。
 
-当然你可以像下面一样去定义列表项的递增序号值：
+```html
+<style>
+	li { counter-increment: list-item 2; }
+	li::marker { content: '(' counters(list-item,'.') ') '; }
+</style>
+<ul>
+  <li>zhaodao88.com</li>
+  <li>zhaodao88.com</li>
+  <li>zhaodao88.com</li>
+</ul>
+```
+效果如下：
+
+![列表项counters效果图 counters](./images/css-list-counter-02.png "列表项counters效果图")
+## counter与display:none

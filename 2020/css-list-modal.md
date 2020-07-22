@@ -5,23 +5,22 @@
 
 `::marker`是一个标记伪元素，能够定义内容填充在`list-item`上代表列表项的标志，先附上一个例子，就能很清楚地看出它的作用。
 
-```javascript
+```html
 <style>
-li::marker { content: "(" counter(list-item, lower-roman) ")"; }
+li::marker { content: "(" counter(list-item) ")"; }
 li { display: list-item; }
 </style>
 
-<ol>
-  <li>This is the first item.</li>
-  <li>This is the second item.</li>
-  <li>This is the third item.</li>
-</ol>
-
-// 页面将会展示
-  (i) This is the first item.
- (ii) This is the second item.
-(iii) This is the third item.
+<ul>
+  <li>zhaodao88.com 找商机</li>
+  <li>zhaodao88.com 找人脉</li>
+  <li>zhaodao88.com 找采购</li>
+</ul>
 ```
+效果图：
+
+![marker效果图 marker](./images/css-list-modal-01.png "marker效果图")
+
 在这里，`marker`为元素定义的是每一项列表项前面的标记符，在伪元素内的`content`的内容就是要在列表项前面所填充的内容。
 
 ##  使用`::marker`填充标记内容
@@ -30,7 +29,7 @@ li { display: list-item; }
 
 标记的样式可以使用`list-style-type`和 `list-style-image`属性或者直接使用`::marker`伪元素进行样式编写。下面展示一个例子。
 + 用`::marker`伪元素对标记进行控制，伪元素内`content`的内容就是标记符的内容
-```javascript
+```html
 <style>
   p { margin-left: 12 em; }
   p.note {
@@ -39,22 +38,19 @@ li { display: list-item; }
   }
   p.note::marker {
     content: "Note " counter(note-counter) ":";
+    color: blue;
+    font-weight: bold;
   }
 </style>
-<p>This is the first paragraph in this document.</p>
-<p class="note">This is a very short document.</p>
-<p>This is the end.</p>
-
-// 页面将会展示
-        This is the first paragraph
-        in this document.
-
-Note 1: This is a very short
-        document.
-
-        This is the end.
+<p>zhaodao88.com 找商机</p>
+<p class="note">zhaodao88.com 找采购</p>
+<p>zhaodao88.com 找人脉</p>
 ```
-当然也可以为标记设置字体样式、颜色等属性，类似`li::marker { color: blue; font-weight:bold; }`
+效果如图:
+
+![marker效果图 marker](./images/css-list-modal-02.png "marker效果图")
+
+当然也可以为标记设置字体样式、颜色等属性，类似上面效果`li::marker { color: blue; font-weight:bold; }`
 > 值得注意的是：目前只有以下属性能够作用于`marker`伪元素上
 > + 所有的字体样式：`font`相关
 > + `white-space`属性
@@ -109,11 +105,16 @@ ul { list-style-type: symbols(cyclic '○' '●'); } // 标记符在'○'和'●
 
 ul { list-style-type: none; } // 不显示标记
 ```
+
+## 注意
+`::marker`伪元素标记不是所有浏览器都支持，包括`chrome`也只是在80以上版本通过启用`experimental Web Platform`才支持，如果你想要测试效果，请前往`chrome://flags`启用`experimental Web Platform`。并不推荐在实际项目去使用这条规则，更推荐使用常规的做法去设置标记块样式。
+
 ## 总结
 
 列表在前端项目中很常见，应用场景也十分广泛。个人觉得，`::marker`伪元素是对`list-style-image`和`list-style-text`的补充，三者都是定义标记块的填充内容，`image`注重图像，`text`注重字符串，`::marker`则可以定`font`、`color`等样式，各具特色。
 
 ## 参考
 
-https://www.w3.org/TR/2020/WD-css-lists-3-20200709
+https://www.w3.org/TR/2020/WD-css-lists-3-20200709<br>
+https://developer.mozilla.org/en-US/docs/Web/CSS/::marker
 
