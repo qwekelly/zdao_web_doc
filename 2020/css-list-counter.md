@@ -91,4 +91,51 @@ counter(zhaodao, lower-roman); /* 以小写罗马数字格式表示当前计数�
 效果如下：
 
 ![列表项counters效果图 counters](./images/css-list-counter-02.png "列表项counters效果图")
-## counter与display:none
+## counter与display:none与marker
+一个元素，如果设置了`display: none`或者`content: none`，将不会生成标记块，`counter-reset`、`counter-increment`也不会有效果。但是设置`visibility: hidden`则不一样，仍然会产生标记块，不会影响`counter`的属性。
+
++ `content: none`
+```html
+<style>
+	li { counter-increment: list-item 2; }
+	li::marker { content: none; }
+</style>
+<ul>
+  <li>zhaodao88.com</li>
+  <li>zhaodao88.com</li>
+  <li>zhaodao88.com</li>
+</ul>
+```
+审查元素：不会生成marker标记块。
+
+![content: none效果图 counters](./images/css-list-counter-03.png "content: none效果图")
+
++ `display: none`
+```css
+<style>
+	li { counter-increment: list-item 2; display: none}
+	li::marker { content: '(' counters(list-item,'.') ') '; }
+</style>
+```
+审查元素：也不会产生marker标记块。
+
+![display: none效果图 counters](./images/css-list-counter-03.png "display: none效果图")
+
++ `visibility: hidden`
+```css
+<style>
+	li { counter-increment: list-item 2; visibility: hidden;}
+	li::marker { content: '(' counters(list-item,'.') ') '; }
+</style>
+```
+审查元素：marker标记块不受影响。
+
+![visibility: hidden效果图 counters](./images/css-list-counter-04.png "visibility: hidden效果图")
+
+## 总结
+对于文中所提到的`marker`标记块，如果对它的概念不是很清晰，可以看<a href="https://blog.csdn.net/wuchen092832/article/details/107525165" target="_blank">CSS 列表模型之marker标记</a>，里面很基础地介绍了标记块相关的知识。
+
+本文纯属个人对标准文档阅读的一些整理，难免疏漏，若有错误，欢迎底下留言指正，一起讨论讨论。
+## 参考
+
+https://www.w3.org/TR/2020/WD-css-lists-3-20200709/#auto-numbering
