@@ -132,6 +132,22 @@ counter(zhaodao, lower-roman); /* 以小写罗马数字格式表示当前计数�
 
 ![visibility: hidden效果图 counters](./images/css-list-counter-04.png "visibility: hidden效果图")
 
+## 注意
+对于有序列表`<ol>`设置`counter`的问题，目前发现一个浏览器兼容性`bug`，在`chrome`浏览器上`<ol>`的`counter`数字均比正常值多1，即以数字2开始！在`Firefox`没有这种问题。详情可见Bug出处：
+https://bugs.chromium.org/p/chromium/issues/detail?id=1107142
+https://bugs.chromium.org/p/chromium/issues/detail?id=796961
+```html
+<ol>
+    <li>zhaodao88.com
+    <li>zhaodao88.com
+    <li>zhaodao88.com
+    <li>zhaodao88.com
+</ol>
+<style>
+    ol > li::marker { content: counters(list-item,'.') '.'; }
+</style>
+```
+![chrome-bug-counters](./images/css-list-counter-05.png "chrome-bug-counters")
 ## 总结
 对于文中所提到的`marker`标记块，如果对它的概念不是很清晰，可以看<a href="https://blog.csdn.net/wuchen092832/article/details/107525165" target="_blank">CSS 列表模型之marker标记</a>，里面很基础地介绍了标记块相关的知识。
 
