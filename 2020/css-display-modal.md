@@ -64,13 +64,52 @@ display-inside 通俗地讲，主要是用来管束自己下属的儿子级元�
 
 ## display-listitem
 
+`display: list-item`: 实现列表元素的效果，等同于`<ul><li>`，感兴趣可以阅读我之前写的关于list-model详细描述的两篇文章。
+https://blog.csdn.net/wuchen092832/article/details/107525165
+
+https://blog.csdn.net/wuchen092832/article/details/107528054
 ## display-internal
+
+主要为`display: table-*`, `display: ruby-*`这些属性。
+
+在这里主要讲讲`display: table-cell`： 可以用来实现`大小不固定元素的垂直居中`，`两栏自适应布局`，
+
++ 垂直居中：
+```css
+div{
+	display:table-cell;
+	width:1em; 
+	height:1em; 
+	border:1px solid #beceeb;
+	font-size:144px; 
+	text-align:center; 
+	vertical-align:middle;
+} 
+img{
+	vertical-align:middle;
+}
+<div>
+	<img src="https://profile.csdnimg.cn/3/3/0/2_wuchen092832"/>
+</div>
+```
++ 两栏自适应布局
+使用方法等同于上面提到的display: flow-root。
 
 ## display-box
 
+`display: contents`: 来看看标准文档对它的定义：
+>The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes and text runs as normal. For the purposes of box generation and layout, the element must be treated as if it had been replaced in the element tree by its contents (including both its source-document children and its pseudo-elements, such as ::before and ::after pseudo-elements, which are generated before/after the element’s children as normal).
+
+意思就是：将设置了该属性值的元素本身将不会产生任何盒子，但是它的从保留其子代元素的正常展示。设置了display: contents 的元素本身不会被渲染，但是其子元素能够正常被渲染。
+
+说到这里，细心的你或许已经想到它的应用场景了：我们在写vue组件时，由于框架的要求，在输出的`<template>`里面必须包裹一个父元素，因此组件里面的内容最终都要包裹一层可能没有什么样式的div。从页面渲染上来说，这其实是没有必要的，这个时候，就可以添上`display: contents`，既起到了包裹的作用，但是在实际渲染中，这个 div 其实没有生成任何box。
+
+`display: none`: 
+>The element and its descendants generate no boxes or text runs.Similarly, if a text node is defined to behave as display: none, it generates no text runs.
+
 ## display-legacy
 
-## 总结
+`display: inline-*`：内联模块。简单理解为在inline里面表示block的特性。
 
 
 ## 参考
