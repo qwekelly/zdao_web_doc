@@ -47,6 +47,33 @@
 
 > 在实际生产环境中，你可以通过 <a href="https://github.com/filamentgroup/loadCSS/blob/master/README.md" target="blank"> loadCSS</a> 函数来很好地进行优化
 
+## 利用webpack插件
+
+###  HTML Critical Webpack Plugin
+
+```javascript
+const HtmlCriticalPlugin = require("html-critical-webpack-plugin");
+
+module.export = {
+  mode: 'production',
+  plugins: [
+    new HtmlCriticalPlugin({
+      base: path.join(path.resolve(__dirname), 'dist/'),
+      src: 'index.html',
+      dest: 'index.html',
+      inline: true,
+      minify: true,
+      extract: true,
+      width: 375,
+      height: 565,
+      penthouse: {
+        blockJSRequests: false,
+      }
+    })
+  ] 
+};
+```
+
 ## 参考
 
 https://web.dev/defer-non-critical-css/
@@ -54,3 +81,7 @@ https://web.dev/defer-non-critical-css/
 https://web.dev/discover-performance-opportunities-with-lighthouse/#run-lighthouse-from-chrome-devtools
 
 https://web.dev/first-contentful-paint/
+
+https://vuejsdevelopers.com/2017/07/24/critical-css-webpack/
+
+https://github.com/anthonygore/html-critical-webpack-plugin
