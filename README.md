@@ -13,7 +13,7 @@
 
 
 ### 兴趣
-其他/读书笔记/something instancing记录
+其他/读书笔记/something interesting记录
 
 
 ### CSS
